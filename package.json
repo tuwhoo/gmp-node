@@ -2,7 +2,8 @@
   "name": "gmp-node",
   "version": "1.0.0",
   "description": "",
-  "main": "activityMonitor.js",
+  "main": "activityMonitor.mjs",
+  "type": "module",
   "scripts": {
     "start": "node activityMonitor.js",
     "test": "echo \"Error: no test specified\" && exit 1"
