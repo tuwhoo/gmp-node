@@ -1,0 +1,28 @@
+{
+  "name": "gmp-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "task1": "nodemon task1.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuwhoo/gmp-node.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tuwhoo/gmp-node/issues"
+  },
+  "homepage": "https://github.com/tuwhoo/gmp-node#readme",
+  "volta": {
+    "node": "20.9.0",
+    "npm": "10.2.3"
+  },
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
