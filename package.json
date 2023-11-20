@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "task1": "nodemon task1.js",
+    "task2": "nodemon task2.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
