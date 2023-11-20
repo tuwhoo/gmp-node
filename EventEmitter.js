@@ -1,4 +1,4 @@
-export default class EventEmitter {
+class EventEmitter {
     listeners = {};
     listenersOnce = {};
 
@@ -53,3 +53,5 @@ export default class EventEmitter {
         ];
     }
 }
+
+module.exports = EventEmitter;

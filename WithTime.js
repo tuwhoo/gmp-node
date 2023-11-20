@@ -1,6 +1,6 @@
-import EventEmitter from "./EventEmitter.mjs";
+const EventEmitter = require("./EventEmitter.js");
 
-export default class WithTime extends EventEmitter {
+class WithTime extends EventEmitter {
     async execute(asyncFunc, ...args) {
         const startTime = Date.now();
         this.emit("begin");
@@ -9,3 +9,5 @@ export default class WithTime extends EventEmitter {
         this.emit("end", data, totalTime);
     }
 }
+
+module.exports = WithTime;

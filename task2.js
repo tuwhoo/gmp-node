@@ -1,4 +1,4 @@
-import WithTime from "./WithTime.mjs";
+const WithTime = require("./WithTime.js");
 
 const withTime = new WithTime();
 

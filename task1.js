@@ -1,4 +1,4 @@
-import EventEmitter from './EventEmitter.mjs';
+const EventEmitter = require('./EventEmitter.js');
 
 const myEmitter = new EventEmitter();
 
