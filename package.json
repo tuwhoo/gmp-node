@@ -4,8 +4,9 @@
   "description": "",
   "main": "",
   "scripts": {
-    "test": "jest",
-    "test:coverage": "jest --coverage"
+    "test": "jest /*.unit.test.ts",
+    "test:integration": "jest /*.integration.test.ts",
+    "test:coverage": "jest /*.unit.test.ts --coverage"
   },
   "author": "",
   "license": "ISC",

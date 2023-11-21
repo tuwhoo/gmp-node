@@ -74,7 +74,7 @@ describe("public-holidays.service (unit tests)", () => {
       expect(responce).toEqual([]);
     });
 
-    it("should return array if shortened holidays", async () => {
+    it("should return array of shortened holidays", async () => {
       jest.spyOn(helpers, "validateInput").mockImplementationOnce(
         () => true
       );
@@ -200,7 +200,7 @@ describe("public-holidays.service (unit tests)", () => {
       expect(responce).toEqual([]);
     });
 
-    it("should return array if shortened holidays", async () => {
+    it("should return array of shortened holidays", async () => {
       jest.spyOn(helpers, "validateInput").mockImplementationOnce(
         () => true
       );
