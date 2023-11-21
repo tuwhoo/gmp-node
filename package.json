@@ -5,6 +5,7 @@
   "main": "",
   "scripts": {
     "test": "jest /*.unit.test.ts",
+    "test:e2e": "jest /*.e2e.test.ts",
     "test:integration": "jest /*.integration.test.ts",
     "test:coverage": "jest /*.unit.test.ts --coverage"
   },
