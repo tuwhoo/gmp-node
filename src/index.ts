@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 import db from "./db/db";
 import predefinedData from "./db/predefinedData";
 
+import apiRouter from "./routes/api.router";
+
 dotenv.config();
 db.initialize(predefinedData);
 
@@ -13,26 +15,27 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Express Server");
 });
 
-app.get("/api/db", (req: Request, res: Response) => {
-  res.status(200);
-  res.setHeader("Content-Type", "application/json");
+app.use("/api", apiRouter);
 
+app.get("/db", (req: Request, res: Response) => {
   const data = {
-    users: db.getAll('users'),
-    carts: db.getAll('carts'),
-    orders: db.getAll('orders'),
-    products: db.getAll('products'),
+    users: db.getAll("users"),
+    carts: db.getAll("carts"),
+    orders: db.getAll("orders"),
+    products: db.getAll("products"),
   };
 
-  const response = JSON.stringify(data);
-  res.send(response);
+  res.status(200).json(data);
 });
 
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
-  console.log(err);
-  res.status(500);
-  res.setHeader("Content-Type", "application/json");
-  res.send({ message: err.message, ok: false });
+  console.error(err);
+  res.status(500).send({
+    data: null,
+    error: {
+      message: "Internal Server error",
+    },
+  });
 });
 
 app.listen(port, () => {

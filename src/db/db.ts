@@ -6,7 +6,7 @@ import { CartEntity } from "../schemas/cart.entity";
 import { OrderEntity } from "../schemas/order.entity";
 import { ProductEntity } from "../schemas/product.entity";
 
-type CollectionName = 'users' | 'carts' | 'orders' | 'products';
+type CollectionName = "users" | "carts" | "orders" | "products";
 
 class DB {
   users: UserEntity[] = [];
@@ -21,20 +21,30 @@ class DB {
     this.products = predefinedData?.products || [];
   }
 
-  create(collectionName: CollectionName, payload: any) {
-    this[collectionName].push({
+  create(collectionName: CollectionName, payload: any): any {
+    const item = {
       id: uuid(),
       ...payload,
-    });
+    };
+
+    this[collectionName].push(item);
+
+    return item;
   }
 
-  get(collectionName: CollectionName, predicate: any) {
+  find(collectionName: CollectionName, predicate: any) {
     const entities = this[collectionName].filter(predicate);
 
     return cloneDeep(entities);
   }
 
-  getOne(collectionName: CollectionName, id: string) {
+  findOne(collectionName: CollectionName, predicate: any): any {
+    const entity = this[collectionName].find(predicate) || null;
+
+    return cloneDeep(entity);
+  }
+
+  getOne(collectionName: CollectionName, id: string): any {
     const entity = this[collectionName].find((entity) => entity.id === id);
 
     return cloneDeep(entity);
