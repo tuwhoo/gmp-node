@@ -1,6 +1,7 @@
 import express, { Express, NextFunction, Request, Response } from "express";
 import dotenv from "dotenv";
 import db from "./db/db";
+import authMiddleware from "./middlewares/auth.middleware";
 import predefinedData from "./db/predefinedData";
 
 import apiRouter from "./routes/api.router";
@@ -15,7 +16,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Express Server");
 });
 
-app.use("/api", apiRouter);
+app.use("/api", authMiddleware, apiRouter);
 
 app.get("/db", (req: Request, res: Response) => {
   const data = {

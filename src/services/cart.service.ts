@@ -21,6 +21,15 @@ class CartService {
       total: this.getCartTotal(cart),
     };
   }
+
+  deleteProfileCart(userId: string) {
+    let cart = CartRepository.getCart(userId);
+    if (!cart) return true;
+
+    const success = CartRepository.markCartAsDeleted(cart.id);
+
+    return success;
+  }
 }
 
 export default new CartService();

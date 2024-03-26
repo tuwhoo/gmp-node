@@ -50,20 +50,22 @@ class DB {
     return cloneDeep(entity);
   }
 
-  getAll(collectionName: CollectionName) {
+  getAll(collectionName: CollectionName): any {
     const entities = this[collectionName];
 
     return cloneDeep(entities);
   }
 
-  updateOne(collectionName: CollectionName, id: string, updater: any) {
+  updateOne(collectionName: CollectionName, id: string, updater: any): any {
     const entityIndex = this[collectionName].findIndex(
       (entity) => entity.id === id
     );
-    if (entityIndex === -1)
+
+    if (entityIndex === -1) {
       throw Error(
         `[DB] Can't update entity with id '${id}' in collection '${collectionName}'`
       );
+    }
 
     if (isFunction(updater)) {
       this[collectionName][entityIndex] = updater(
@@ -75,6 +77,8 @@ class DB {
         ...updater,
       };
     }
+
+    return this.getOne(collectionName, id);
   }
 
   deleteOne(collectionName: CollectionName, id: string) {

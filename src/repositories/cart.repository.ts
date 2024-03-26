@@ -1,10 +1,29 @@
 import db from "../db/db";
 import { CartEntity } from "../schemas/cart.entity";
 import { ProductEntity } from "../schemas/product.entity";
+import ProductRepository from "./product.repository";
 
 class CartRepository {
   getCart(userId: string, isDeleted = false): CartEntity | null {
-    const cart: CartEntity | null = db.findOne("carts", (cart: CartEntity) => cart.userId === userId && cart.isDeleted === isDeleted);
+    const cart = db.findOne("carts", (cart: CartEntity) => {
+      return cart.userId === userId && cart.isDeleted === isDeleted;
+    });
+
+    if (cart?.items?.length > 0) {
+      cart.items = cart.items.reduce((items: any, item: any) => {
+        const productId = item.product.id;
+        const product = ProductRepository.getProduct(productId);
+
+        if (product) {
+          items.push({
+            ...item,
+            product,
+          });
+        }
+
+        return items;
+      }, []);
+    }
 
     return cart;
   }
@@ -17,6 +36,12 @@ class CartRepository {
     });
 
     return cart;
+  }
+
+  markCartAsDeleted(cartId: string) {
+    const cart = db.updateOne('carts', cartId, { isDeleted: true });
+
+    return cart.isDeleted;
   }
 }
 
